@@ -1,1 +1,61 @@
-<p>bus-tracking-page works!</p>
+<div #map id="map"></div>
+
+<div class="floating-range p-2">
+  <div class="floating-content">
+    <button (click)="zoomOut()" class="btn btn-primary"> - </button>
+
+    <input
+      type="range"
+      class="form-range px-2"
+      min="1"
+      max="18"
+      [value]="zoom"
+      (input)="zoomChanged( zoomInput.value )"
+      #zoomInput
+    >
+
+    <button (click)="zoomIn()" class="btn btn-primary"> + </button>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <!-- Contenido de la primera columna -->
+      <div class="row">
+        <div class="col">
+          <span class="form-label">
+            Zoom: {{ zoom | number:'2.2-2'}}
+            <br>
+            Lng,Lat: {{ currentLngLat.lng | number:'2.7-7' }}, {{ currentLngLat.lat | number:'2.7-7' }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <!-- Contenido de la segunda columna -->
+      <div class="row">
+        <div class="col text-end">
+          <button (click)="flyToUIS()" class="btn btn-primary mt-2">
+            Ir a UIS
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<ul class="list-group">
+ <li *ngFor="let colorMarker of markers; index as i"
+      class="list-group-item"
+      [ngStyle]="{ backgroundColor: colorMarker.color }"
+      (click)="flyTo(colorMarker.marker)"
+      (dblclick)="deleteMarker(i)"
+      >
+  Marker {{ i + 1}}
+ </li>
+</ul>
+
+<button (click)="createMarker()" class="btn btn-primary" id="addMarker">
+  + Agregar marcador
+</button>

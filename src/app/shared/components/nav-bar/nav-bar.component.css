@@ -1,0 +1,29 @@
+#navbar {
+  background-color: #C0FF00;
+  /* box-shadow: 0 5px 5px rgba(182, 182, 182, 0.25); */
+}
+
+#navItems {
+  font-size: x-large;
+}
+
+.text-green {
+  color: #183D24;
+}
+
+.btn-primary {
+  background-color: #24ad4f;
+  border-color: #24ad4f;
+  font-size: large;
+
+}
+
+.btn-primary:hover {
+  background-color: #2b8347;
+  border-color: #2b8347;
+}
+
+.router-link-active{
+  color: grey
+}
+

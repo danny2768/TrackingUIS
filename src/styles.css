@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Americana';
+  src: url('assets/fonts/Americana-Font-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Lato';
+  src: url('assets/fonts/Lato-Light.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('assets/fonts/Montserrat-VariableFont_wght.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Laila';
+  src: url('assets/fonts/Laila-Regular.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.custom-font-A {
+  font-family: 'Americana', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  font-style: normal;
+}
+
+.custom-font-L {
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  font-style: normal;
+}
+
+.custom-font-Laila {
+  font-family: 'Laila', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  font-style: normal;
+}
+
+.custom-font-M {
+  font-family: 'Montserrat', sans-serif;
+}
