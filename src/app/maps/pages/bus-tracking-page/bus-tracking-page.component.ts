@@ -1,5 +1,9 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { GeolocateControl, LngLat, LngLatLike, Map, Marker } from 'mapbox-gl';
+import { MapsService } from '../../services/maps.service';
+import { Subscription, tap } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { BusInformation } from '../../interfaces/map.interface';
 
 interface MarkerAndColor {
   color: string;
@@ -22,6 +26,10 @@ interface busStop {
   styleUrls: ['./bus-tracking-page.component.css'],
 })
 export class BusTrackingPageComponent implements AfterViewInit, OnDestroy {
+
+  public subscription?: Subscription;
+  public busMarker?: Marker;
+
   @ViewChild('map')
   public divMap?: ElementRef;
 
@@ -58,7 +66,10 @@ export class BusTrackingPageComponent implements AfterViewInit, OnDestroy {
     },
   ]
 
+  constructor( private afAuth: AngularFireAuth, private mapsService: MapsService ){}
+
   ngAfterViewInit(): void {
+    // MapBox Map
     if (!this.divMap) throw 'El elemento html no fue encontrado';
 
     this.map = new Map({
@@ -96,12 +107,45 @@ export class BusTrackingPageComponent implements AfterViewInit, OnDestroy {
         .addTo(this.map!)
     });
 
+
+    // Get Uis Bus data
+    this.subscription = this.BusData()
+
     this.mapListeners();
     this.readFromLocalStorage();
   }
 
   ngOnDestroy(): void {
     this.map?.remove();
+
+    if ( this.subscription ){
+      this.subscription.unsubscribe();
+    }
+  }
+
+  BusData():Subscription {
+    return this.mapsService.getBusInfo()
+      .pipe(
+        tap( () => {
+          if ( this.busMarker ) {
+            this.busMarker.remove();
+          }
+        })
+      ).subscribe( busData => {
+        console.log(busData);
+        if ( busData !== null ) {
+          this.busMarker = new Marker({
+            color: 'red',
+            draggable: false,
+          })
+            .setLngLat( [busData.Longitude, busData.Latitude] )
+            .addTo(this.map!)
+
+          if ( busData.Accident === true ){
+            alert('¡Ha ocurrido un accidente!')
+          }
+        }
+      })
   }
 
   mapListeners() {
@@ -182,6 +226,11 @@ export class BusTrackingPageComponent implements AfterViewInit, OnDestroy {
       zoom: 16,
       center: [ -73.1197226, 7.1399599],
     });
+  }
+
+  flyToUISBus() {
+    if ( !this.busMarker ) return
+    this.flyTo(this.busMarker)
   }
 
   saveToLocalStorage() {

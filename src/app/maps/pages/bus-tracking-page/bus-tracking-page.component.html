@@ -59,3 +59,7 @@
 <button (click)="createMarker()" class="btn btn-primary" id="addMarker">
   + Agregar marcador
 </button>
+
+<button *ngIf="!!busMarker" (click)="flyToUISBus()" class="btn btn-primary" id="FlyUisBus">
+  Ir al Bus
+</button>
