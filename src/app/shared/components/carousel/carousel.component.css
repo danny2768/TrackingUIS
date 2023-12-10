@@ -11,3 +11,9 @@
 .carousel-item {
   height: 38rem;
 }
+
+@media (max-width: 768px) {
+  .carousel-item {
+    height: 15rem;
+  }
+}
