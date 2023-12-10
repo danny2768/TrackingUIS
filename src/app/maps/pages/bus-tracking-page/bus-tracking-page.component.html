@@ -10,7 +10,7 @@
       min="1"
       max="18"
       [value]="zoom"
-      (input)="zoomChanged( zoomInput.value )"
+      (input)="zoomChanged(zoomInput.value)"
       #zoomInput
     >
 
@@ -18,7 +18,7 @@
   </div>
 
   <div class="row">
-    <div class="col-sm-8">
+    <div class="col-12 col-md-8">
       <!-- Contenido de la primera columna -->
       <div class="row">
         <div class="col">
@@ -30,36 +30,41 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
+    <div class="col-12 col-md-4">
       <!-- Contenido de la segunda columna -->
       <div class="row">
-        <div class="col text-end">
-          <button (click)="flyToUIS()" class="btn btn-primary mt-2">
-            Ir a UIS
-          </button>
+        <div class="col text-md-end">
+          <div class="d-flex align-items-center">
+            <button (click)="flyToUIS()" class="btn btn-primary mt-2 me-2">
+              Ir a UIS
+            </button>
+            <button *ngIf="!!busMarker" (click)="flyToUISBus()" class="btn btn-primary mt-2">
+              Ir al Bus
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
 </div>
 
-
-<ul class="list-group">
- <li *ngFor="let colorMarker of markers; index as i"
+<ul class="list-group d-none d-md-block">
+  <!-- Utiliza las clases d-none d-md-block para ocultar en pantallas pequeñas -->
+  <li *ngFor="let colorMarker of markers; index as i"
       class="list-group-item"
       [ngStyle]="{ backgroundColor: colorMarker.color }"
       (click)="flyTo(colorMarker.marker)"
-      (dblclick)="deleteMarker(i)"
-      >
-  Marker {{ i + 1}}
- </li>
+      (dblclick)="deleteMarker(i)">
+    Marker {{ i + 1}}
+  </li>
 </ul>
 
-<button (click)="createMarker()" class="btn btn-primary" id="addMarker">
+<button (click)="createMarker()" class="btn btn-primary d-none d-md-block" id="addMarker">
+  <!-- Utiliza las clases d-none d-md-block para ocultar en pantallas pequeñas -->
   + Agregar marcador
 </button>
 
-<button *ngIf="!!busMarker" (click)="flyToUISBus()" class="btn btn-primary" id="FlyUisBus">
+<button *ngIf="!!busMarker" (click)="flyToUISBus()" class="btn btn-primary d-none d-md-block" id="FlyUisBus">
+  <!-- Utiliza las clases d-none d-md-block para ocultar en pantallas pequeñas -->
   Ir al Bus
 </button>

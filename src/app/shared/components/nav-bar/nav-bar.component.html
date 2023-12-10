@@ -10,31 +10,21 @@
 </svg>
 
 <div class="border-bottom" id="navbar">
-  <div class="container custom-font-L" >
-    <header
-      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 "
-    >
+  <div class="container custom-font-L">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
       <div class="col-md-3 mb-2 mb-md-0">
-        <a
-          href="/"
-          class="d-inline-flex link-body-emphasis text-decoration-none"
-        >
-          <img
-            src="./assets/trackingUIS-Logo.png"
-            alt="TrackingUIS Logo"
-            width="40"
-            height="38"
-          />
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <img src="./assets/trackingUIS-Logo.png" alt="TrackingUIS Logo" width="40" height="38" />
           <span class="row align-items-center ms-2 custom-font-Laila">Tracking UIS</span>
         </a>
       </div>
 
       <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0" id="navItems">
-        <li><a [routerLink]="['/home']" routerLinkActive="router-link-active"  class="nav-link px-2 text-green">Home</a></li>
-        <li><a [routerLink]="['/map/track-bus']" routerLinkActive="router-link-active"  class="nav-link px-2 text-green">Map</a></li>
+        <li><a [routerLink]="['/home']" routerLinkActive="router-link-active" class="nav-link px-2 text-green">Home</a></li>
+        <li><a [routerLink]="['/map/track-bus']" routerLinkActive="router-link-active" class="nav-link px-2 text-green">Map</a></li>
       </ul>
 
-      <div class="col-md-3 text-end">
+      <div class="col-md-3 text-end d-none d-md-block">
         <button type="button" class="btn btn-primary me-2">
           Login
         </button>
